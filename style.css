@@ -6,3 +6,49 @@
 body{
     font-family: 'Roboto', sans-serif;  
 }
+header{
+    padding: 2em 0;
+    justify-content: space-around;
+}
+.row{
+    display:flex;
+}
+.col{
+flex-direction:column;
+}
+/* .center{
+    justify-content: center;
+    align-items: center;
+} */
+.container{
+    max-width:800px;
+}
+.color-container{
+    margin: 0 auto;
+    min-height:75vh;
+
+}
+.rectangle{
+    width:20vw;
+    height:80%;
+    margin-bottom: 1em;
+    
+}
+.color-1{
+    background-color: blue;
+}
+.color-2{
+    background-color: red;
+}
+.color-3{
+    background-color: orange;
+}
+.color-4{
+    background-color: yellow;
+}
+.color-5{
+    background-color: violet;
+}
+.hex {
+   text-align: center;
+}
