@@ -18,13 +18,13 @@
 //
 const colorsmodeValue = document.getElementById("colors").value;
 const getColorBtn = document.getElementById("get-color-btn");
-const seedColorValue = document.getElementById("seed-color").value;
-const seedColor = seedColorValue.slice(1);
+const seedColorEL = document.getElementById("seed-color");
+
 const colorColumn = document.querySelector(".color-col");
 
-
 const getColorScheme = async function () {
-    console.log(seedColor, colorsmodeValue);
+  const seedColor = seedColorEL.value.slice(1);
+  console.log(seedColor, colorsmodeValue);
   const response = await fetch(
     `https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${colorsmodeValue}&count=5`
   );
@@ -35,25 +35,25 @@ const getColorScheme = async function () {
 };
 
 const getHTML = async function () {
-  const colorArray = await getColorScheme()
+  const colorArray = await getColorScheme();
 
   console.log(colorArray);
-    let html = []
-   html += colorArray.forEach(
+  let html = [];
+  html += colorArray.forEach(
     (color) => ` 
     <div class="color-col">
       <div class="rectangle" style ="background:${color}" ></div>
-      <p class="hex">${color.join('')}</p>
+      <p class="hex">${color.join("")}</p>
     </div>`
   );
   return html;
 };
 
 const render = async function () {
-//   return (colorColumn.innerHTML = await getHTML())
-console.log(await getHTML())
+  //   return (colorColumn.innerHTML = await getHTML())
+  console.log(await getHTML());
 };
 getColorBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  render()
+  render();
 });
