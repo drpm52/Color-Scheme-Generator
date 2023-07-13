@@ -16,7 +16,7 @@
 // colors: (5) [{…}, {…}, {…}, {…}, {…}]count: "5"image: {bare: 'https://www.thecolorapi.com/scheme?format=svg&named=false&hex=000000&mode=monochrome&count=5', named: 'https://www.thecolorapi.com/scheme?format=svg&hex=000000&mode=monochrome&count=5'}mode: "monochrome"seed: {hex: {…}, rgb: {…}, hsl: {…}, hsv: {…}, name: {…}, …}_embedded: {}_links: {self: '/scheme?hex=000000&mode=monochrome&count=5', schemes: {…}}[[Prototype]]: Object
 
 //try to create a branch with no async await function
-const colorsmodeValue = document.getElementById("colors").value;
+const  colorsmodeEl = document.getElementById("colors");
 const getColorBtn = document.getElementById("get-color-btn");
 const seedColorEL = document.getElementById("seed-color");
 let colorScheme =[]
@@ -49,11 +49,11 @@ getColorBtn.addEventListener("click", function (e) {
   e.preventDefault();
   const seedColor = seedColorEL.value.slice(1);
   fetch(
-    `https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${colorsmodeValue}&count=5`
+    `https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${colorsmodeEl.value}&count=5`
   )
     .then((resp) => resp.json())
     .then((data) => {
-       
+       console.log(data)
       colorScheme = data.colors.map((color) => color.hex.value)
    
 
