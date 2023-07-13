@@ -51,10 +51,8 @@ getColorBtn.addEventListener("click", function (e) {
   )
     .then((resp) => resp.json())
     .then((data) => {
-    
-      colorScheme = []
+      colorScheme = [];
       colorScheme = data.colors.map((color) => color.hex.value);
       colorColumn.innerHTML = getHTML();
     });
- 
 });
