@@ -29,7 +29,7 @@ const getHTML = function () {
  
  
  
-  let html 
+  let html= '' 
   
   html += colorScheme.map((color) => 
   
@@ -39,7 +39,7 @@ const getHTML = function () {
     <p class="hex" onclick=copy()>${color}</p>
   </div>`
 
-  );
+  ).join('')
   return html
 
 };
@@ -57,12 +57,12 @@ getColorBtn.addEventListener("click", function (e) {
       colorScheme = data.colors.map((color) => color.hex.value)
    
 
-    });
+    })
+    colorColumn.innerHTML = getHTML()
    
   
    
 
   
-    colorColumn.innerHTML = getHTML()
  
 });
