@@ -25,6 +25,14 @@ const colorColumn = document.querySelector(".color-container");
 
 
 
+async function copy(color) {
+ 
+ 
+
+  alert(`Copied the text: ${color}`);
+} 
+
+
 const getHTML = function () {
  
  
@@ -35,8 +43,8 @@ const getHTML = function () {
   
   ` 
   <div class="color-col">
-    <div class="rectangle"  onclick=copy() style ="background-color:${color}" ></div>
-    <p class="hex" onclick=copy()>${color}</p>
+    <div class="rectangle"  onclick=copy('${color}') style ="background-color:${color}" ></div>
+    <p class="hex" onclick=copy('${color}')>${color}</p>
   </div>`
 
   ).join('')
