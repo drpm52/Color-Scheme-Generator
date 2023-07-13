@@ -15,45 +15,54 @@
 // image: {…}, …}
 // colors: (5) [{…}, {…}, {…}, {…}, {…}]count: "5"image: {bare: 'https://www.thecolorapi.com/scheme?format=svg&named=false&hex=000000&mode=monochrome&count=5', named: 'https://www.thecolorapi.com/scheme?format=svg&hex=000000&mode=monochrome&count=5'}mode: "monochrome"seed: {hex: {…}, rgb: {…}, hsl: {…}, hsv: {…}, name: {…}, …}_embedded: {}_links: {self: '/scheme?hex=000000&mode=monochrome&count=5', schemes: {…}}[[Prototype]]: Object
 
-//
+//try to create a branch with no async await function
 const colorsmodeValue = document.getElementById("colors").value;
 const getColorBtn = document.getElementById("get-color-btn");
 const seedColorEL = document.getElementById("seed-color");
+let colorScheme =[]
 
-const colorColumn = document.querySelector(".color-col");
+const colorColumn = document.querySelector(".color-container");
 
-const getColorScheme = async function () {
-  const seedColor = seedColorEL.value.slice(1);
-  console.log(seedColor, colorsmodeValue);
-  const response = await fetch(
-    `https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${colorsmodeValue}&count=5`
+
+
+const getHTML = function () {
+ 
+ 
+ 
+  let html 
+  
+  html += colorScheme.map((color) => 
+  
+  ` 
+  <div class="color-col">
+    <div class="rectangle"  onclick=copy() style ="background-color:${color}" ></div>
+    <p class="hex" onclick=copy()>${color}</p>
+  </div>`
+
   );
-  const colorScheme = await response.json();
-  const colorArray = [colorScheme.colors.map((color) => color.hex.value)];
-  //
-  return colorArray;
+  return html
+
 };
 
-const getHTML = async function () {
-  const colorArray = await getColorScheme();
 
-  console.log(colorArray);
-  let html = [];
-  html += colorArray.forEach(
-    (color) => ` 
-    <div class="color-col">
-      <div class="rectangle" style ="background:${color}" ></div>
-      <p class="hex">${color.join("")}</p>
-    </div>`
-  );
-  return html;
-};
-
-const render = async function () {
-  //   return (colorColumn.innerHTML = await getHTML())
-  console.log(await getHTML());
-};
 getColorBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  render();
+  const seedColor = seedColorEL.value.slice(1);
+  fetch(
+    `https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${colorsmodeValue}&count=5`
+  )
+    .then((resp) => resp.json())
+    .then((data) => {
+       
+      colorScheme = data.colors.map((color) => color.hex.value)
+   
+
+    });
+   
+  
+   
+
+  
+    colorColumn.innerHTML = getHTML()
+ 
 });
